@@ -2,7 +2,7 @@ Proxy Squid Transparente
 El Objetivo es Montar un Servidor que sirva para compartir Internet en una red local y además utilizar Squid para hacer un proxy transparente para acelerar la navegación utilizando el puerto 3128, ya que el puerto 80 regularmente esta ocupado por nuestra web.
 Antes que nada debo decirte que necesitas dos tarjetas de red, una con salida a internet (en mi ejemplo rl0 con ip 192.168.0.254 y una segunda conectada a la red Local (en mi ejemplo rl1 con ip 192.168.1.254). En la red local debes asignar las ips usando 192.168.1.x netmask 255.255.255.0, puerta de enlace (gateway) 192.168.1.254 o puedes usar un dhcp que te asigne todo esto, además debes utilizar los dns de tu proveedor.
 
-#Configurar NAT
+# Configurar NAT
 
 Para hacerlo vamos a compilar un nuevo kernel como vemos a continuación
 cd /usr/src/sys/amd64/conf
@@ -27,7 +27,7 @@ make install
 service ipfw start
 sysctl net.inet.ip.fw.verbose_limit=5
 
-#Comandos IPFW
+# Comandos IPFW
 Lista toda las reglas
 ipfw list
 
@@ -36,9 +36,9 @@ ipfw -t list
 
 Después de Reiniciar el Servidor, comenzamos la configuración.
 
-#Instalando y Configurando
+# Instalando y Configurando
 
-#Instalar el port del Squid
+# Instalar el port del Squid
 pkg install squid
 
 Abre el rc.conf y asegurate que incluya las siguientes líneas
@@ -65,7 +65,7 @@ ee /etc/rc.conf
 
 observa que en la línea natd_interface=rl0 se coloca el nombre de la tarjeta de red conectada a internet. en este caso es rl0
 
-#Configurar squid
+# Configurar squid
 cd /usr/local/etc/squid
 cp squid.conf.default squid.conf
 ee squid.conf
@@ -97,7 +97,7 @@ squid -z
 Terminado el Proceso se ejecuta el squid:
 /usr/loca/etc/rc.d/squid.sh start
 
-#Para terminar creamos el script del firewall
+# Para terminar creamos el script del firewall
 ee /etc/firewall.rules
 
 -f flush
@@ -120,7 +120,7 @@ ee /usr/local/squid/logs/access.log
 
 y ahí te aparecerá la ip y las paginas que navegaron en cada maquina
 
-#Despedida
+# Despedida
 
 Saludos a todos, y si solamente a una persona le sirvió este tutorial,
 quedare satisfecho y pensaré que mi trabajo valió la pena...
