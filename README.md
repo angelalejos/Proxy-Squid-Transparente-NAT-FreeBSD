@@ -6,7 +6,9 @@ Antes que nada debo decirte que necesitas dos tarjetas de red, una con salida a 
 
 Para hacerlo vamos a compilar un nuevo kernel como vemos a continuación
 #cd /usr/src/sys/amd64/conf
+
 #cp GENERIC NUEVO
+
 #ee NUEVO
 
 Incluimos las siguientes opciones para el firewall y el natd.
@@ -18,20 +20,27 @@ Incluimos las siguientes opciones para el firewall y el natd.
     options    IPDIVERT			            # enables NAT
 
 El paso siguiente es compilar el kernel NUEVO
+
 #config NUEVO
 #cd ../../compile/NUEVO
+
 #make depend
+
 #make
+
 #make install
 
-service ipfw start
-sysctl net.inet.ip.fw.verbose_limit=5
+#service ipfw start
+
+#sysctl net.inet.ip.fw.verbose_limit=5
 
 # Comandos IPFW
 Lista toda las reglas
+
 #ipfw list
 
 Lista toda las reglas con timestamp
+
 #ipfw -t list
 
 Después de Reiniciar el Servidor, comenzamos la configuración.
@@ -67,8 +76,11 @@ Abre el rc.conf y asegurate que incluya las siguientes líneas
 observa que en la línea natd_interface=rl0 se coloca el nombre de la tarjeta de red conectada a internet. en este caso es rl0
 
 # Configurar squid
+
 #cd /usr/local/etc/squid
+
 #cp squid.conf.default squid.conf
+
 #ee squid.conf
 
 Asegurate que existan y están sin comentario las siguientes líneas en el archivo squid.conf (las lineas comentadas comienzan con #)
@@ -93,12 +105,15 @@ Asegurate que existan y están sin comentario las siguientes líneas en el archi
 Observa que en cache_mgr debes poner el correo que quieres que aparezca así como en visible_hostname el nombre de tu servidor (Puedes poner el correo y hostname que quieras)
 
 Paso siguiente se inicializa el directorio del cache haciendo lo siguiente:
+
 #squid -z
 
 Terminado el Proceso se ejecuta el squid:
+
 #/usr/loca/etc/rc.d/squid.sh start
 
 # Para terminar creamos el script del firewall
+
 #ee /etc/firewall.rules
 
     -f flush
