@@ -22,6 +22,7 @@ Incluimos las siguientes opciones para el firewall y el natd.
 El paso siguiente es compilar el kernel NUEVO
 
 #config NUEVO
+
 #cd ../../compile/NUEVO
 
 #make depend
@@ -35,6 +36,7 @@ El paso siguiente es compilar el kernel NUEVO
 #sysctl net.inet.ip.fw.verbose_limit=5
 
 # Comandos IPFW
+
 Lista toda las reglas
 
 #ipfw list
@@ -52,17 +54,27 @@ Después de Reiniciar el Servidor, comenzamos la configuración.
 #pkg install squid
 
 Abre el rc.conf y asegurate que incluya las siguientes líneas
-    sysrc  gateway_enable=YES
-    sysrc  router_enable=YES
-    sysrc  natd_program=/sbin/natd
-    sysrc  natd_enable=YES
-    sysrc  natd_interface=rl0
-    sysrc  firewall_enable=YES
-    sysrc  firewall_type=/etc/firewall.rules
-    sysrc  firewall_script=/etc/rc.firewall
-    sysrc  squid_enable=YES
+
+#sysrc  gateway_enable=YES
+
+#sysrc  router_enable=YES
+
+#sysrc  natd_program=/sbin/natd
+
+#sysrc  natd_enable=YES
+
+#sysrc  natd_interface=rl0
+
+#sysrc  firewall_enable=YES
+
+#sysrc  firewall_type=/etc/firewall.rules
+
+#sysrc  firewall_script=/etc/rc.firewall
+
+#sysrc  squid_enable=YES
 
 #ee /etc/rc.conf
+
     gateway_enable=YES
     router_enable=YES
     natd_program=/sbin/natd
@@ -132,6 +144,7 @@ y debe aparecerte la siguiente línea además de otras
     tcp4 0 0 *.3128 *.* LISTEN
 
 si es así felicidades tu proxy esta funcionando para comprobar que funciona navega en algunas paginas en las maquinas de la red (192.168.1.x) y luego checa el archivo access.log:
+
 #ee /usr/local/squid/logs/access.log
 
 y ahí te aparecerá la ip y las paginas que navegaron en cada maquina
