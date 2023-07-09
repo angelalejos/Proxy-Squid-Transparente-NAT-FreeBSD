@@ -36,6 +36,8 @@ El paso siguiente es compilar el kernel NUEVO
 
 #make install
 
+Después de Reiniciar el Servidor, comenzamos la configuración.
+
 #service ipfw start
 
 #sysctl net.inet.ip.fw.verbose_limit=5
