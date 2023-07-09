@@ -25,7 +25,7 @@ El paso siguiente es compilar el kernel NUEVO
 
 #cd ../../compile/NUEVO
 
-#make depend
+#make cleandepend && make depend
 
 #make
 
