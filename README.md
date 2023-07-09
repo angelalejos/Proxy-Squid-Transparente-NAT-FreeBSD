@@ -13,11 +13,16 @@ Para hacerlo vamos a compilar un nuevo kernel como vemos a continuación
 
 Incluimos las siguientes opciones para el firewall y el natd.
 
-    options    IPFIREWALL			        # enables IPFW
-    options    IPFIREWALL_VERBOSE		    # enables logging for rules with log keyword
+    options    IPFIREWALL			# enables IPFW
+    options    IPFIREWALL_VERBOSE		# enables logging for rules with log keyword to syslogd(8)
     options    IPFIREWALL_VERBOSE_LIMIT=5	# limits number of logged packets per-entry
     options    IPFIREWALL_DEFAULT_TO_ACCEPT # sets default policy to pass what is not explicitly denied
-    options    IPDIVERT			            # enables NAT
+    options    IPFIREWALL_NAT		# enables basic in-kernel NAT support
+    options    LIBALIAS			# enables full in-kernel NAT support
+    options    IPFIREWALL_NAT64		# enables in-kernel NAT64 support
+    options    IPFIREWALL_NPTV6		# enables in-kernel IPv6 NPT support
+    options    IPFIREWALL_PMOD		# enables protocols modification module support
+    options    IPDIVERT			# enables NAT through natd(8)
 
 El paso siguiente es compilar el kernel NUEVO
 
